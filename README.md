@@ -10,6 +10,8 @@ DITEN - Università degli Studi di Genova.
 Via Opera Pia 11A, I-16145, Genoa, Italy.
 activityrecognition@smartlab.ws
 www.smartlab.ws
+
+Experiments description:
 ==================================================================
 
 The experiments have been carried out with a group of 30 volunteers within an age bracket of 19-48 years. Each person performed six activities (WALKING, 
@@ -85,7 +87,7 @@ The run_analysis.R script:
 =========================================
 
 The "UCI HAR Dataset" paste must be saved in the R's working directory.
-The script needs the dplyr package to run appropriately.
+The script "run_analysis.R" needs the dplyr package to run appropriately.
 This script will execute the following steps:
 1. Merge the training and the test sets to create one data set.
 2. Extract only the measurements on the mean and standard deviation for each measurement. 
@@ -115,3 +117,4 @@ This dataset is distributed AS-IS and no responsibility implied or explicit can 
 commercial use is prohibited.
 
 Jorge L. Reyes-Ortiz, Alessandro Ghio, Luca Oneto, Davide Anguita. November 2012.
+
