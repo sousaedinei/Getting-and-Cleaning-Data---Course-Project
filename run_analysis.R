@@ -16,7 +16,7 @@
                            "train","/","X_train.txt")
         data_train <- read.table(path_file)
         
-        #Use the file "features.txt" to put the names in the tables.
+        #Use the file "features.txt" to put the labels in the tables.
         path_file<- paste0(my_local, "/","UCI HAR Dataset", "/","features.txt")
         names <- read.table(path_file)
         names(data_test) <- names[,2]
@@ -39,7 +39,7 @@
                            "test","/","subject_test.txt")
         subject_test <- read.table(path_file)
         
-        #Add num_activity and subject to data_test and data_train.
+        #Add num_activity and subject as matrix to data_test and data_train.
         data_test$subject <- as.matrix(subject_test)
         data_test$num_activity <- as.matrix(num_activity_test)
         data_train$subject <- as.matrix(subject_train)
@@ -50,11 +50,11 @@
         mydata <- rbind(data_test,data_train)
         remove(data_test,data_train)
         
-
+        
 # 2. Extracts only the measurements on the mean and standard deviation 
 # for each measurement. 
         
-        #Get the vector of columns with mean, std, subject and
+        #Create a vector of columns with the variables mean, std, subject and
         #num_activity.
         vector_names <- names(mydata)
         mean_columns <- grep("mean", vector_names, ignore.case = TRUE)
@@ -70,12 +70,12 @@
         
 # 3. Uses descriptive activity names to name the activities in the data set.
  
-        #Get the activity labels.
+        #Load the activity labels file.
         path_file<- paste0(my_local, "/","UCI HAR Dataset", "/","activity_labels.txt")
         activity_labels <- read.table(path_file)
         names(activity_labels) <- c("num_activity", "activity")
         
-        #Create an ID and merging mydata with activity_labels.
+        #Create an ID and merge mydata with activity_labels.
         ID <- as.numeric(row.names(mydata))
         mydata$ID <- ID
         mydata <- merge(mydata, activity_labels, by = "num_activity")
@@ -100,7 +100,7 @@
         #Group by subject and activity. 
         by_subject <- group_by(mydata, subject, activity)
         
-        #Summarise each variable by mean.
+        #Summarise each variable by mean
         tidy_data <- by_subject %>% summarise_each(funs(mean))
         
         #Remove unnecessary objects.
