@@ -50,10 +50,7 @@
         mydata <- rbind(data_test,data_train)
         remove(data_test,data_train)
         
-        #Change num_activity and subject columns to numeric.
-        mydata$subject <- as.numeric(mydata$subject)
-        mydata$num_activity <- as.numeric(mydata$num_activity)
-        
+
 # 2. Extracts only the measurements on the mean and standard deviation 
 # for each measurement. 
         
